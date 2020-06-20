@@ -78,7 +78,7 @@ public class UsuarioTableModel extends AbstractTableModel{
 	
 	public void modificar(UsuarioDTO usuario) {
 		
-		if (autorizacionController.addUsuario(usuario)) {
+		if (autorizacionController.modifyUsuario(usuario)) {
 			lista.remove(usuario);
 			lista.add(usuario);		
 		}

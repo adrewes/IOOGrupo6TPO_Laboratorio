@@ -61,7 +61,7 @@ public class UsuarioABM extends JDialog {
 	 * Create the dialog.
 	 */
 	
-	private void inicializarControles() {
+	private void inicializarControles(boolean idEnabled) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -107,6 +107,7 @@ public class UsuarioABM extends JDialog {
 		JLabel lblUsuarioID = new JLabel("Usuario ID");
 		
 		txtUsuarioID = new JTextField();
+		txtUsuarioID.setEnabled(idEnabled);
 		txtUsuarioID.setColumns(10);
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
@@ -246,10 +247,10 @@ public class UsuarioABM extends JDialog {
 		catch (Exception e) {e.printStackTrace();}		
 	}
 	
-	public UsuarioABM(JFrame frame) {
+	public UsuarioABM(JFrame frame, boolean idEnabled) {
 		super(frame, "Persona", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(idEnabled);
 		asignarFormato();
 	}
 

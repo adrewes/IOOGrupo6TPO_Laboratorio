@@ -60,7 +60,7 @@ public class AutorizacionController {
 	private Usuario getUsuarioByID(String usuarioID)
 	{
 		for (Usuario usuario: datos)
-			if (usuario.getUsuarioID()==usuarioID) {
+			if (usuario.getUsuarioID().equals(usuarioID)) {
 				return usuario;
 			}
 		return null;

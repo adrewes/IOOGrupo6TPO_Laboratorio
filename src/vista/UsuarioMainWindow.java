@@ -97,7 +97,7 @@ public class UsuarioMainWindow {
 	
 	private void agregarUsuario() {
 		try {
-			UsuarioABM dialog = new UsuarioABM(frame);
+			UsuarioABM dialog = new UsuarioABM(frame,true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -110,7 +110,7 @@ public class UsuarioMainWindow {
 	
 	private void modificarUsuario() {
 		try {
-			UsuarioABM dialog = new UsuarioABM(frame);
+			UsuarioABM dialog = new UsuarioABM(frame,false);
 			dialog.setUsuario(tableModel.getUsuarioDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);

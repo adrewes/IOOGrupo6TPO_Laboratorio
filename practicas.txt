@@ -1,1 +1,1 @@
-[{"practicaID":"1","nombre":"Hemograma","grupo":"Sangre","valoresCriticos":"1111,11","valoresReservados":"2222,22","tiempoEntrega":"4","estadoHabilitacion":"Habilitado"}]
+[{"practicaID":"1","nombre":"Hemograma","grupo":"Sangre","valoresCriticos":"1111,11","valoresReservados":"2222,22","tiempoEntrega":"4","estadoHabilitacion":"Habilitado"},{"practicaID":"2","nombre":"Electrocardiograma","grupo":"test","valoresCriticos":"1234,12","valoresReservados":"1231,44","tiempoEntrega":"5","estadoHabilitacion":"Inhabilitado"}]

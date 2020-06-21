@@ -28,7 +28,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import collections.PeticionCollection;
+import controller.ParametrosController;
 import tablemodel.PeticionTableModel;
+import tablemodel.PracticaTableModel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -47,7 +49,7 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 public class PeticionMainWindow {
-	private PeticionCollection coleccionPeticion;
+	private ParametrosController parametrosController;
 	JFrame frame;
 	private JTable table;
 	private PeticionTableModel tableModel;
@@ -72,14 +74,13 @@ public class PeticionMainWindow {
 	 * Create the application.
 	 */
 	public PeticionMainWindow() {
-		coleccionPeticion = new PeticionCollection();
-		tableModel = new PeticionTableModel(coleccionPeticion);
+		tableModel = new PeticionTableModel();
 		initialize();
 	}
 	
 	private void agregarPeticion() {
 		try {
-			PeticionABM dialog = new PeticionABM(frame);
+			PeticionABM dialog = new PeticionABM(frame, true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -92,8 +93,8 @@ public class PeticionMainWindow {
 	
 	private void modificarPeticion() {
 		try {
-			PeticionABM dialog = new PeticionABM(frame);
-			dialog.setPeticion(coleccionPeticion.getPeticion(table.getSelectedRow()));
+			PeticionABM dialog = new PeticionABM(frame, false);
+			dialog.setPeticion(tableModel.getPeticionDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -161,7 +162,7 @@ public class PeticionMainWindow {
 				switch (opcion) {
 				case 0:
 					// SI
-					coleccionPeticion.grabar();
+					tableModel.grabar();
 					break;
 				case 1:
 					// NO

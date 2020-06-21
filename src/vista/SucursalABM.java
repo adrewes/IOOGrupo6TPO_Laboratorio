@@ -55,7 +55,7 @@ public class SucursalABM extends JDialog {
 	 * Create the dialog.
 	 */
 	
-	private void inicializarControles() {
+	private void inicializarControles(boolean isIdEditable) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,6 +65,7 @@ public class SucursalABM extends JDialog {
 		JLabel lblWarning = new JLabel("");
 		lblWarning.setForeground(Color.RED);
 		txtSucursalNumero = new JTextField();
+		txtSucursalNumero.setEditable(isIdEditable);
 		txtSucursalNumero.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -176,10 +177,10 @@ public class SucursalABM extends JDialog {
 		catch (Exception e) {e.printStackTrace();}		
 	}
 	
-	public SucursalABM(JFrame frame) {
+	public SucursalABM(JFrame frame, boolean isIdEditable) {
 		super(frame, "Sucursal", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(isIdEditable);
 		asignarFormato();
 	}
 

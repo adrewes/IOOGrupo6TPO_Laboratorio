@@ -6,8 +6,11 @@ import javax.swing.table.AbstractTableModel;
 
 import collections.PacienteCollection;
 import collections.PracticaCollection;
+import controller.AutorizacionController;
+import controller.ParametrosController;
 import dto.EstadoHabilitacionEnumDTO;
 import dto.PracticaDTO;
+import dto.UsuarioDTO;
 
 public class PracticaTableModel extends AbstractTableModel{
 	/**
@@ -16,6 +19,7 @@ public class PracticaTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<PracticaDTO> lista;
+	ParametrosController parametrosController;
 	
 	protected String[] columnNames = new String[] { "Practica ID", "Nombre", "Grupo", "Valores Criticos", "Valores Reservados", "Tiempo Entrega", "Estado Habilitacion"}; 
 	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class, String.class, String.class, String.class}; 
@@ -24,9 +28,10 @@ public class PracticaTableModel extends AbstractTableModel{
 	public String getColumnName(int col) { return columnNames[col]; } 
 	public Class getColumnClass(int col) { return columnClasses[col]; } 
 	
-	public PracticaTableModel(PracticaCollection coleccionPractica)
+	public PracticaTableModel()
 	{
-		lista = coleccionPractica.getPracticaList();
+		parametrosController = new ParametrosController();
+		lista = parametrosController.getPracticaListDTO();
 	}
 	
 	@Override
@@ -62,27 +67,44 @@ public class PracticaTableModel extends AbstractTableModel{
 		}
 	}
 	
+	public PracticaDTO getPracticaDTO(int index)
+	{
+		return lista.get(index);
+	}
+	
 	public void agregar(PracticaDTO practica)
 	{
-		lista.add(practica);
+		if (parametrosController.addPractica(practica)) {
+			lista.add(practica);			
+		}
 		fireTableDataChanged();
 	}
 	
 	public void modificar(PracticaDTO practica) {
-		eliminar(lista.indexOf(practica));
-		agregar(practica);
+		if (parametrosController.modifyPractica(practica)) {
+			lista.remove(practica);
+			lista.add(practica);		
+		}
 		fireTableDataChanged();
 	}
 	
 	public void eliminar(int fila)
 	{
-		lista.remove(fila);
+		PracticaDTO practica =  lista.get(fila);
+		if (parametrosController.deletePractica(practica)) {
+			lista.remove(practica);
+		}
 		fireTableDataChanged();
 	}
 	
-	public void eliminar(PracticaDTO paciente)
+	public void eliminar(PracticaDTO practica)
 	{
-		eliminar(lista.indexOf(paciente));
+		eliminar(lista.indexOf(practica));
 	}	
+	
+	public void grabar ()
+	{
+		parametrosController.grabarPractica();
+	}
 
 }

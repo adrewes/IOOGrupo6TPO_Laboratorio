@@ -28,7 +28,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import collections.PracticaCollection;
+import controller.ParametrosController;
 import tablemodel.PracticaTableModel;
+import tablemodel.UsuarioTableModel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -47,7 +49,7 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 public class PracticaMainWindow {
-	private PracticaCollection coleccionPractica;
+	private ParametrosController parametrosController;
 	JFrame frame;
 	private JTable table;
 	private PracticaTableModel tableModel;
@@ -65,14 +67,13 @@ public class PracticaMainWindow {
 	 * Create the application.
 	 */
 	public PracticaMainWindow() {
-		coleccionPractica = new PracticaCollection();
-		tableModel = new PracticaTableModel(coleccionPractica);
+		tableModel = new PracticaTableModel();
 		initialize();
 	}
 
 	private void agregarPractica() {
 		try {
-			PracticaABM dialog = new PracticaABM(frame);
+			PracticaABM dialog = new PracticaABM(frame, true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -85,8 +86,8 @@ public class PracticaMainWindow {
 
 	private void modificarPractica() {
 		try {
-			PracticaABM dialog = new PracticaABM(frame);
-			dialog.setPractica(coleccionPractica.getPractica(table.getSelectedRow()));
+			PracticaABM dialog = new PracticaABM(frame, false);
+			dialog.setPractica(tableModel.getPracticaDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -154,7 +155,7 @@ public class PracticaMainWindow {
 				switch (opcion) {
 				case 0:
 					// SI
-					coleccionPractica.grabar();
+					tableModel.grabar();
 					break;
 				case 1:
 					// NO

@@ -57,7 +57,7 @@ public class PracticaABM extends JDialog {
 	 * Create the dialog.
 	 */
 	
-	private void inicializarControles() {
+	private void inicializarControles(boolean isIdEditable) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,6 +66,7 @@ public class PracticaABM extends JDialog {
 		JLabel lblPracticaID = new JLabel("Practica ID");
 		
 		txtPracticaID = new JTextField();
+		txtPracticaID.setEditable(isIdEditable);
 		txtPracticaID.setColumns(10);
 		
 		JLabel lblValoresCriticos = new JLabel("Valores Criticos");
@@ -203,10 +204,10 @@ public class PracticaABM extends JDialog {
 		catch (Exception e) {e.printStackTrace();}		
 	}
 	
-	public PracticaABM(JFrame frame) {
+	public PracticaABM(JFrame frame, boolean isIdEditable) {
 		super(frame, "Practica", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(isIdEditable);
 		asignarFormato();
 	}
 

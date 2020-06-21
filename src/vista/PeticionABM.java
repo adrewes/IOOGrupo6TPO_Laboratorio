@@ -70,7 +70,7 @@ public class PeticionABM extends JDialog {
 	 * Create the dialog.
 	 */
 
-	private void inicializarControles() {
+	private void inicializarControles(boolean isIdEditable) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,6 +79,7 @@ public class PeticionABM extends JDialog {
 		JLabel lblPeticionID = new JLabel("Peticion ID");
 
 		txtPeticionID = new JTextField();
+		txtPeticionID.setEditable(isIdEditable);
 		txtPeticionID.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -399,10 +400,10 @@ public class PeticionABM extends JDialog {
 		}
 	}
 
-	public PeticionABM(JFrame frame) {
+	public PeticionABM(JFrame frame, boolean isIdEditable) {
 		super(frame, "Peticion", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(isIdEditable);
 		asignarFormato();
 	}
 

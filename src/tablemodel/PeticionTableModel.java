@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import collections.PeticionCollection;
-import dto.PeticionDTO;;
+import controller.ParametrosController;
+import controller.PeticionController;
+import dto.PeticionDTO;
+import dto.PracticaDTO;;
 
 public class PeticionTableModel extends AbstractTableModel{
 	/**
@@ -13,6 +16,7 @@ public class PeticionTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<PeticionDTO> lista;
+	PeticionController peticionController;
 	
 	protected String[] columnNames = new String[] { "Peticion ID", "Sucursal ID", "Paciente ID", "Obra Social", "Fecha de Entrega", "Fecha de Carga", "Practicas Asociadas", "Resultados"}; 
 	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class}; 
@@ -21,9 +25,10 @@ public class PeticionTableModel extends AbstractTableModel{
 	public String getColumnName(int col) { return columnNames[col]; } 
 	public Class getColumnClass(int col) { return columnClasses[col]; } 
 	
-	public PeticionTableModel(PeticionCollection coleccionPeticion)
+	public PeticionTableModel()
 	{
-		lista = coleccionPeticion.getPeticionList();
+		peticionController = new PeticionController();
+		lista = peticionController.getPeticionListDTO();
 	}
 	
 	@Override
@@ -60,27 +65,45 @@ public class PeticionTableModel extends AbstractTableModel{
 		}
 	}
 	
+	public PeticionDTO getPeticionDTO(int index)
+	{
+		return lista.get(index);
+	}
+	
 	public void agregar(PeticionDTO peticion)
 	{
-		lista.add(peticion);
+		if (peticionController.addPeticion(peticion)) {
+			lista.add(peticion);			
+		}
 		fireTableDataChanged();
 	}
 	
 	public void modificar(PeticionDTO peticion) {
-		eliminar(lista.indexOf(peticion));
-		agregar(peticion);
+		if (peticionController.modifyPeticion(peticion)) {
+			lista.remove(peticion);
+			lista.add(peticion);		
+		}
 		fireTableDataChanged();
 	}
 	
 	public void eliminar(int fila)
 	{
-		lista.remove(fila);
+		PeticionDTO peticion =  lista.get(fila);
+		if (peticionController.deletePeticion(peticion)) {
+			lista.remove(peticion);
+		}
 		fireTableDataChanged();
 	}
 	
-	public void eliminar(PeticionDTO peticion)
+	public void eliminar(PracticaDTO peticion)
 	{
 		eliminar(lista.indexOf(peticion));
 	}	
+	
+	public void grabar ()
+	{
+		peticionController.grabarPeticion();
+	}
+
 
 }

@@ -29,6 +29,7 @@ import javax.swing.table.TableColumnModel;
 
 import collections.PacienteCollection;
 import collections.SucursalCollection;
+import controller.ParametrosController;
 import tablemodel.PacienteTableModel;
 import tablemodel.SucursalTableModel;
 
@@ -49,7 +50,8 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 public class SucursalMainWindow {
-	private SucursalCollection coleccionSucursal;
+	
+	private ParametrosController parametrosController;
 	JFrame frame;
 	private JTable table;
 	private SucursalTableModel tableModel;
@@ -74,14 +76,13 @@ public class SucursalMainWindow {
 	 * Create the application.
 	 */
 	public SucursalMainWindow() {
-		coleccionSucursal = new SucursalCollection();
-		tableModel = new SucursalTableModel(coleccionSucursal);
+		tableModel = new SucursalTableModel();
 		initialize();
 	}
 	
 	private void agregarSucursal() {
 		try {
-			SucursalABM dialog = new SucursalABM(frame);
+			SucursalABM dialog = new SucursalABM(frame,true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -94,13 +95,13 @@ public class SucursalMainWindow {
 	
 	private void modificarSucursal() {
 		try {
-			SucursalABM dialog = new SucursalABM(frame);
-			dialog.setSucursal(coleccionSucursal.getSucursal(table.getSelectedRow()));
+			SucursalABM dialog = new SucursalABM(frame,false);
+			dialog.setSucursal(tableModel.getSucursalDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 			if (dialog.getModalResult() == ModalResult.OK)
-				tableModel.refresh();
+				tableModel.modificar(dialog.getSucursal());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -163,7 +164,7 @@ public class SucursalMainWindow {
 				switch (opcion) {
 				case 0:
 					// SI
-					coleccionSucursal.grabar();
+					tableModel.grabar();
 					break;
 				case 1:
 					// NO

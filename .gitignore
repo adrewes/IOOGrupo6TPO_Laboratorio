@@ -1,0 +1,14 @@
+##Archivos de proyecto de eclipse
+#################################
+.settings/
+.metadata/
+*.DS_Store
+*.classpath
+*.classpath(1).xml
+*.classpath.xml
+*.project
+*.project(1).xml
+*.project.xml
+
+##Archivos compilados
+bin/

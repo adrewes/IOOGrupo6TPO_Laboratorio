@@ -29,6 +29,8 @@ import javax.swing.JFrame;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -56,7 +58,7 @@ public class ResultadoABM extends JDialog {
 	 * Create the dialog.
 	 */
 	
-	private void inicializarControles() {
+	private void inicializarControles(boolean isIdEditable) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,6 +77,8 @@ public class ResultadoABM extends JDialog {
 		JLabel lblResultadoID = new JLabel("Resultado ID");
 		
 		txtResultadoID = new JTextField();
+		txtResultadoID.setEditable(isIdEditable);
+
 		txtResultadoID.setColumns(20);
 		
 		txtValor = new JTextField();
@@ -184,10 +188,10 @@ public class ResultadoABM extends JDialog {
 		catch (Exception e) {e.printStackTrace();}		
 	}
 	
-	public ResultadoABM(JFrame frame) {
+	public ResultadoABM(JFrame frame, boolean isIdEditable) {
 		super(frame, "Resultado", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(isIdEditable);
 		asignarFormato();
 	}
 

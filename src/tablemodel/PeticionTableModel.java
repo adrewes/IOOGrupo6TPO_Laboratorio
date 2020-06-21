@@ -95,7 +95,7 @@ public class PeticionTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 	
-	public void eliminar(PracticaDTO peticion)
+	public void eliminar(PeticionDTO peticion)
 	{
 		eliminar(lista.indexOf(peticion));
 	}	

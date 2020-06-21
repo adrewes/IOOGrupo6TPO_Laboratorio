@@ -8,6 +8,10 @@ import javax.swing.table.AbstractTableModel;
 import collections.PacienteCollection;
 import collections.PracticaCollection;
 import collections.ResultadoCollection;
+import controller.LaboratorioController;
+import controller.PeticionController;
+import dto.PeticionDTO;
+import dto.PracticaDTO;
 import dto.ResultadoDTO;
 
 public class ResultadoTableModel extends AbstractTableModel {
@@ -17,6 +21,7 @@ public class ResultadoTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<ResultadoDTO> lista;
+	LaboratorioController laboratorioController;
 
 	protected String[] columnNames = new String[] { "Resultado ID", "Practica ID", "Valor", "Descripcion", "Estado" };
 	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class,
@@ -30,8 +35,9 @@ public class ResultadoTableModel extends AbstractTableModel {
 		return columnClasses[col];
 	}
 
-	public ResultadoTableModel(ResultadoCollection coleccionResultado) {
-		lista = coleccionResultado.getResultadoList();
+	public ResultadoTableModel() {
+		laboratorioController = new LaboratorioController();
+		lista = laboratorioController.getResultadoListDTO();
 	}
 
 	@Override
@@ -68,25 +74,45 @@ public class ResultadoTableModel extends AbstractTableModel {
 			return null;
 		}
 	}
-
-	public void agregar(ResultadoDTO resultado) {
-		lista.add(resultado);
+	
+	public ResultadoDTO getResultadoDTO(int index)
+	{
+		return lista.get(index);
+	}
+	
+	public void agregar(ResultadoDTO resultado)
+	{
+		if (laboratorioController.addResultado(resultado)) {
+			lista.add(resultado);			
+		}
 		fireTableDataChanged();
 	}
-
+	
 	public void modificar(ResultadoDTO resultado) {
-		eliminar(lista.indexOf(resultado));
-		agregar(resultado);
+		if (laboratorioController.modifyResultado(resultado)) {
+			lista.remove(resultado);
+			lista.add(resultado);		
+		}
 		fireTableDataChanged();
 	}
-
-	public void eliminar(int fila) {
-		lista.remove(fila);
+	
+	public void eliminar(int fila)
+	{
+		ResultadoDTO resultado =  lista.get(fila);
+		if (laboratorioController.deleteResultado(resultado)) {
+			lista.remove(resultado);
+		}
 		fireTableDataChanged();
 	}
-
-	public void eliminar(ResultadoDTO resultado) {
+	
+	public void eliminar(ResultadoDTO resultado)
+	{
 		eliminar(lista.indexOf(resultado));
+	}	
+	
+	public void grabar ()
+	{
+		laboratorioController.grabarResultado();
 	}
 
 }

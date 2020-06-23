@@ -58,7 +58,7 @@ public class PacienteABM extends JDialog {
 	 * Create the dialog.
 	 */
 	
-	private void inicializarControles() {
+	private void inicializarControles(boolean isIdEditable) {
 		setBounds(100, 100, 584, 411);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,6 +67,7 @@ public class PacienteABM extends JDialog {
 		JLabel lblPacienteID = new JLabel("Paciente ID");
 		
 		txtPacienteID = new JTextField();
+		txtPacienteID.setEditable(isIdEditable);
 		txtPacienteID.setColumns(10);
 		
 		JLabel lblDomicilio = new JLabel("Domicilio");
@@ -203,10 +204,10 @@ public class PacienteABM extends JDialog {
 		catch (Exception e) {e.printStackTrace();}		
 	}
 	
-	public PacienteABM(JFrame frame) {
+	public PacienteABM(JFrame frame, boolean isIdEditable) {
 		super(frame, "Persona", true);
 		setLocationRelativeTo(frame);
-		inicializarControles();
+		inicializarControles(isIdEditable);
 		asignarFormato();
 	}
 
@@ -225,7 +226,7 @@ public class PacienteABM extends JDialog {
 	}
 	
 	private void asignarDatosForm(){
-		txtPacienteID.setText(paciente.getDni());
+		txtPacienteID.setText(paciente.getPacienteID());
 		txtNombre.setText(paciente.getNombre());
 		txtDNI.setText(paciente.getDni());
 		txtDomicilio.setText(paciente.getDomicilio());

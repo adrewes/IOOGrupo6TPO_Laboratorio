@@ -27,7 +27,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import collections.PacienteCollection;
+import controller.LaboratorioController;
 import tablemodel.PacienteTableModel;
 
 import java.awt.Color;
@@ -47,7 +47,7 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 public class PacienteMainWindow {
-	private PacienteCollection coleccionPaciente;
+	private LaboratorioController laboratorioController;
 	JFrame frame;
 	private JTable table;
 	private PacienteTableModel tableModel;
@@ -65,14 +65,13 @@ public class PacienteMainWindow {
 	 * Create the application.
 	 */
 	public PacienteMainWindow() {
-		coleccionPaciente = new PacienteCollection();
-		tableModel = new PacienteTableModel(coleccionPaciente);
+		tableModel = new PacienteTableModel();
 		initialize();
 	}
 
 	private void agregarPaciente() {
 		try {
-			PacienteABM dialog = new PacienteABM(frame);
+			PacienteABM dialog = new PacienteABM(frame, true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -85,8 +84,8 @@ public class PacienteMainWindow {
 
 	private void modificarPaciente() {
 		try {
-			PacienteABM dialog = new PacienteABM(frame);
-			dialog.setPaciente(coleccionPaciente.getPaciente(table.getSelectedRow()));
+			PacienteABM dialog = new PacienteABM(frame, false);
+			dialog.setPaciente(tableModel.getPacienteDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -154,7 +153,7 @@ public class PacienteMainWindow {
 				switch (opcion) {
 				case 0:
 					// SI
-					coleccionPaciente.grabar();
+					tableModel.grabar();
 					break;
 				case 1:
 					// NO

@@ -72,7 +72,6 @@ public class SucursalABM extends JDialog {
 				String value = txtSucursalNumero.getText();
 	            int l = value.length();
 	            if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9')|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-	            	txtSucursalNumero.setEditable(true);
 	               lblWarning.setText("");
 	            } else {
 	            	txtSucursalNumero.setEditable(false);

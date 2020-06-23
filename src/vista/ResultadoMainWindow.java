@@ -28,6 +28,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import collections.ResultadoCollection;
+import controller.LaboratorioController;
 import tablemodel.ResultadoTableModel;
 
 import java.awt.Color;
@@ -47,7 +48,7 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 public class ResultadoMainWindow {
-	private ResultadoCollection coleccionResultado;
+	private LaboratorioController laboratorioController;
 	JFrame frame;
 	private JTable table;
 	private ResultadoTableModel tableModel;
@@ -65,14 +66,13 @@ public class ResultadoMainWindow {
 	 * Create the application.
 	 */
 	public ResultadoMainWindow() {
-		coleccionResultado = new ResultadoCollection();
-		tableModel = new ResultadoTableModel(coleccionResultado);
+		tableModel = new ResultadoTableModel();
 		initialize();
 	}
 
 	private void agregarResultado() {
 		try {
-			ResultadoABM dialog = new ResultadoABM(frame);
+			ResultadoABM dialog = new ResultadoABM(frame, true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -85,8 +85,8 @@ public class ResultadoMainWindow {
 
 	private void modificarResultado() {
 		try {
-			ResultadoABM dialog = new ResultadoABM(frame);
-			dialog.setResultado(coleccionResultado.getResultado(table.getSelectedRow()));
+			ResultadoABM dialog = new ResultadoABM(frame, false);
+			dialog.setResultado(tableModel.getResultadoDTO(table.getSelectedRow()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
@@ -154,7 +154,7 @@ public class ResultadoMainWindow {
 				switch (opcion) {
 				case 0:
 					// SI
-					coleccionResultado.grabar();
+					tableModel.grabar();
 					break;
 				case 1:
 					// NO

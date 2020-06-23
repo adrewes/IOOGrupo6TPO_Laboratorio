@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import collections.PacienteCollection;
+import controller.LaboratorioController;
 import dto.PacienteDTO;
+
 
 public class PacienteTableModel extends AbstractTableModel{
 	/**
@@ -14,6 +15,7 @@ public class PacienteTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<PacienteDTO> lista;
+	LaboratorioController laboratorioController;
 	
 	protected String[] columnNames = new String[] { "Paciente ID", "Nombre", "DNI", "Domicilio", "mail", "Sexo", "Fecha Nacimiento"}; 
 	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class, String.class, String.class, String.class}; 
@@ -22,9 +24,10 @@ public class PacienteTableModel extends AbstractTableModel{
 	public String getColumnName(int col) { return columnNames[col]; } 
 	public Class getColumnClass(int col) { return columnClasses[col]; } 
 	
-	public PacienteTableModel(PacienteCollection coleccionPaciente)
+	public PacienteTableModel()
 	{
-		lista = coleccionPaciente.getPacienteList();
+		laboratorioController = new LaboratorioController();
+		lista = laboratorioController.getPacienteListDTO();
 	}
 	
 	@Override
@@ -60,21 +63,33 @@ public class PacienteTableModel extends AbstractTableModel{
 		}
 	}
 	
+	public PacienteDTO getPacienteDTO(int index)
+	{
+		return lista.get(index);
+	}
+	
 	public void agregar(PacienteDTO paciente)
 	{
-		lista.add(paciente);
+		if (laboratorioController.addPaciente(paciente)) {
+			lista.add(paciente);			
+		}
 		fireTableDataChanged();
 	}
 	
 	public void modificar(PacienteDTO paciente) {
-		eliminar(lista.indexOf(paciente));
-		agregar(paciente);
+		if (laboratorioController.modifyPaciente(paciente)) {
+			lista.remove(paciente);
+			lista.add(paciente);		
+		}
 		fireTableDataChanged();
 	}
 	
 	public void eliminar(int fila)
 	{
-		lista.remove(fila);
+		PacienteDTO paciente =  lista.get(fila);
+		if (laboratorioController.deletePaciente(paciente)) {
+			lista.remove(paciente);
+		}
 		fireTableDataChanged();
 	}
 	
@@ -82,5 +97,10 @@ public class PacienteTableModel extends AbstractTableModel{
 	{
 		eliminar(lista.indexOf(paciente));
 	}	
+	
+	public void grabar ()
+	{
+		laboratorioController.grabarPaciente();
+	}
 
 }

@@ -42,7 +42,7 @@ import dto.EstadoEnumDTO;
 public class ResultadoABM extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtPracticaID;
+	private JTextField txtPeticionID;
 	private JTextField txtResultadoID;
 	private JTextField txtValor;
 	private JTextField txtDescripcion;
@@ -64,10 +64,10 @@ public class ResultadoABM extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.WEST);
 		
-		JLabel lblPracticaID = new JLabel("Practica ID");
+		JLabel lblPeticionID = new JLabel("Peticion ID");
 		
-		txtPracticaID = new JTextField();
-		txtPracticaID.setColumns(10);
+		txtPeticionID = new JTextField();
+		txtPeticionID.setColumns(10);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
 		
@@ -101,9 +101,9 @@ public class ResultadoABM extends JDialog {
 							.addGap(83)
 							.addComponent(txtResultadoID, 0, 0, Short.MAX_VALUE))
 						.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
-							.addComponent(lblPracticaID)
+							.addComponent(lblPeticionID)
 							.addGap(93)
-							.addComponent(txtPracticaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtPeticionID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblDescripcion)
@@ -125,8 +125,8 @@ public class ResultadoABM extends JDialog {
 						.addComponent(txtResultadoID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPracticaID)
-						.addComponent(txtPracticaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblPeticionID)
+						.addComponent(txtPeticionID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -201,7 +201,7 @@ public class ResultadoABM extends JDialog {
 
 	private void asignarDatosEntidad() {
 		resultado.setResultadoID(txtResultadoID.getText());
-		resultado.setPracticaID(txtPracticaID.getText());
+		resultado.setPeticionID(txtPeticionID.getText());
 		resultado.setValor(txtValor.getText());
 		resultado.setDescripcion(txtDescripcion.getText());
 		resultado.setEstado((EstadoEnumDTO)comboBoxEstado.getSelectedItem());
@@ -209,7 +209,7 @@ public class ResultadoABM extends JDialog {
 	
 	private void asignarDatosForm(){
 		txtResultadoID.setText(resultado.getResultadoID());
-		txtPracticaID.setText(resultado.getPracticaID());
+		txtPeticionID.setText(resultado.getPeticionID());
 		txtValor.setText(resultado.getValor());
 		txtDescripcion.setText(resultado.getDescripcion());
 		comboBoxEstado.setSelectedItem(resultado.getEstado());

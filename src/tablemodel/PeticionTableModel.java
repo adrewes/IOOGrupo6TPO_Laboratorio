@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import collections.PeticionCollection;
 import controller.ParametrosController;
 import controller.PeticionController;
 import dto.PeticionDTO;
@@ -18,8 +17,8 @@ public class PeticionTableModel extends AbstractTableModel{
 	private ArrayList<PeticionDTO> lista;
 	PeticionController peticionController;
 	
-	protected String[] columnNames = new String[] { "Peticion ID", "Sucursal ID", "Paciente ID", "Obra Social", "Fecha de Entrega", "Fecha de Carga", "Practicas Asociadas", "Resultados"}; 
-	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class}; 
+	protected String[] columnNames = new String[] { "Peticion ID", "Sucursal ID", "Paciente ID", "Obra Social", "Fecha de Entrega", "Fecha de Carga", "Estado"}; 
+	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class, String.class, String.class, String.class}; 
 
 
 	public String getColumnName(int col) { return columnNames[col]; } 
@@ -58,9 +57,8 @@ public class PeticionTableModel extends AbstractTableModel{
 			case 2: return lista.get(rowIndex).getPacienteID();
 			case 3: return lista.get(rowIndex).getObraSocial();
 			case 4: return lista.get(rowIndex).getFchEntrega();
-			case 5: return lista.get(rowIndex).getFchCarga(); 
-			case 6: return lista.get(rowIndex).getPracticasAsociadas();
-			case 7: return lista.get(rowIndex).getResultados();
+			case 5: return lista.get(rowIndex).getFchCarga();
+			case 6: return lista.get(rowIndex).getEstado();
 			default: return null; 
 		}
 	}

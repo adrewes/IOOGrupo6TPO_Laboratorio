@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import collections.PacienteCollection;
-import collections.PracticaCollection;
 import controller.AutorizacionController;
 import controller.ParametrosController;
 import dto.EstadoHabilitacionEnumDTO;

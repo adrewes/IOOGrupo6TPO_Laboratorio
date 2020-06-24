@@ -2,10 +2,9 @@ package tablemodel;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
-import collections.PacienteCollection;
-import collections.SucursalCollection;
 import controller.AutorizacionController;
 import controller.ParametrosController;
 import dto.PacienteDTO;
@@ -19,7 +18,7 @@ public class SucursalTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<SucursalDTO> lista;
-	ParametrosController parametrosController;
+	private ParametrosController parametrosController;
 	
 	protected String[] columnNames = new String[] { "Sucursal ID", "Direccion", "Responsable Tecnico (Usuario)"}; 
 	protected Class[] columnClasses = new Class[] { int.class, String.class, String.class}; 
@@ -84,18 +83,22 @@ public class SucursalTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 	
-	public void eliminar(int fila)
+	public void eliminar(int fila, String sucursalIDADerivar)
 	{
 		SucursalDTO sucursal =  lista.get(fila);
-		if (parametrosController.deleteSucursal(sucursal)) {
-			lista.remove(sucursal);
+		if (sucursal.getNumero()==Integer.parseInt(sucursalIDADerivar)) {
+			JOptionPane.showMessageDialog(null, "El ID Sucursal de destino y el de origen no pueden ser iguales");
 		}
-		fireTableDataChanged();
+		else if (parametrosController.deleteSucursal(sucursal, sucursalIDADerivar)) {
+			lista.remove(sucursal);
+			fireTableDataChanged();
+		}
+
 	}
 		
-	public void eliminar(SucursalDTO sucursal)
+	public void eliminar(SucursalDTO sucursal, String sucursalIDADerivar)
 	{
-		eliminar(lista.indexOf(sucursal));
+		eliminar(lista.indexOf(sucursal), sucursalIDADerivar);
 	}	
 	
 	public void grabar ()

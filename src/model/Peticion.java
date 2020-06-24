@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import dto.EstadoEnumDTO;
 import dto.EstadoHabilitacionEnumDTO;
 import dto.PeticionDTO;
@@ -15,13 +17,10 @@ public class Peticion {
 	private String fchEntrega;
 	private String fchCarga;
 	private EstadoEnumDTO estado;
-	//Falta poner estos como lista asociado a las practicas y resultados creados
-	private String practicasAsociadas;
-	private String resultados;
 
 	
 
-	public Peticion(String peticionID, String sucursalID, String pacienteID, String obraSocial, String fchEntrega, String fchCarga, EstadoEnumDTO estado, String practicasAsociados, String resultados)
+	public Peticion(String peticionID, String sucursalID, String pacienteID, String obraSocial, String fchEntrega, String fchCarga, EstadoEnumDTO estado)
 	{
 		this.peticionID = peticionID;
 		this.sucursalID = sucursalID;
@@ -30,8 +29,6 @@ public class Peticion {
 		this.fchEntrega = fchEntrega;
 		this.fchCarga = fchCarga;
 		this.estado = estado;
-		this.practicasAsociadas = practicasAsociadas;
-		this.resultados = resultados;
 	}
 	
 	public Peticion(PeticionDTO peticionDTO)
@@ -44,8 +41,6 @@ public class Peticion {
 		this.setFchEntrega(peticionDTO.getFchEntrega());
 		this.setFchCarga(peticionDTO.getFchCarga());
 		this.setEstado(peticionDTO.getEstado());
-		this.setPracticasAsociadas(peticionDTO.getPracticasAsociadas());
-		this.setResultados(peticionDTO.getResultados());
 		
 	}
 	
@@ -59,8 +54,6 @@ public class Peticion {
 		peticion.setFchEntrega(this.getFchEntrega());
 		peticion.setFchCarga(this.getFchCarga());
 		peticion.setEstado(this.getEstado());
-		peticion.setPracticasAsociadas(this.getPracticasAsociadas());
-		peticion.setResultados(this.getResultados());
 	
 		return peticion;
 	}
@@ -124,23 +117,5 @@ public class Peticion {
 	public void setEstado(EstadoEnumDTO estado) {
 		this.estado = estado;
 	}
-
-	public String getPracticasAsociadas() {
-		return practicasAsociadas;
-	}
-
-	public void setPracticasAsociadas(String practicasAsociadas) {
-		this.practicasAsociadas = practicasAsociadas;
-	}
-
-	public String getResultados() {
-		return resultados;
-	}
-
-	public void setResultados(String resultados) {
-		this.resultados = resultados;
-	}
-
-	
 
 }

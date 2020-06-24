@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import collections.PacienteCollection;
-import collections.PracticaCollection;
-import collections.ResultadoCollection;
 import controller.LaboratorioController;
 import controller.PeticionController;
 import dto.PeticionDTO;
@@ -21,9 +18,9 @@ public class ResultadoTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<ResultadoDTO> lista;
-	LaboratorioController laboratorioController;
+	private LaboratorioController laboratorioController;
 
-	protected String[] columnNames = new String[] { "Resultado ID", "Practica ID", "Valor", "Descripcion", "Estado" };
+	protected String[] columnNames = new String[] { "Resultado ID", "Peticion ID", "Valor", "Descripcion", "Estado" };
 	protected Class[] columnClasses = new Class[] { String.class, String.class, String.class, String.class,
 			String.class };
 
@@ -63,7 +60,7 @@ public class ResultadoTableModel extends AbstractTableModel {
 		case 0:
 			return lista.get(rowIndex).getResultadoID();
 		case 1:
-			return lista.get(rowIndex).getPracticaID();
+			return lista.get(rowIndex).getPeticionID();
 		case 2:
 			return lista.get(rowIndex).getValor();
 		case 3:

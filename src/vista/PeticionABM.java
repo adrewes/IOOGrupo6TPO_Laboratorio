@@ -47,7 +47,6 @@ public class PeticionABM extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtPeticionID;
 	private JTextField txtPacienteID;
-	private JTextField txtPracticasAsociadas;
 	private PeticionDTO peticion = new PeticionDTO();
 	private ModalResult modalResult;
 	private JTextField txtObraSocial;
@@ -60,7 +59,6 @@ public class PeticionABM extends JDialog {
 	private JLabel lblWarningMessageSucursalID = new JLabel("");
 	private JTextField txtSucursalID;
 	private JComboBox comboBoxEstado;
-	private JTextField txtResultados;
 
 	/**
 	 * Launch the application.
@@ -116,11 +114,6 @@ public class PeticionABM extends JDialog {
 			}
 		});
 		txtPacienteID.setColumns(20);
-
-		JLabel lblPracticasAsociadas = new JLabel("Practicas Asociadas");
-
-		txtPracticasAsociadas = new JTextField();
-		txtPracticasAsociadas.setColumns(20);
 
 		txtObraSocial = new JTextField();
 		txtObraSocial.setColumns(8);
@@ -187,164 +180,101 @@ public class PeticionABM extends JDialog {
 		comboBoxEstado = new JComboBox();
 		comboBoxEstado.setModel(new DefaultComboBoxModel(EstadoEnumDTO.values()));
 
-		JLabel lblResultados = new JLabel("Resultados");
-
-		txtResultados = new JTextField();
-		txtResultados.setColumns(20);
-
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap().addGroup(gl_contentPanel
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING,
-								gl_contentPanel.createSequentialGroup().addComponent(lblEstado).addContainerGap(515,
-										Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup().addGroup(gl_contentPanel
-								.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPanel.createSequentialGroup().addGroup(gl_contentPanel
-										.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblObraSocial, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-										.addComponent(lblPacienteID).addComponent(lblSucursalID)
-										.addComponent(lblPeticionID).addComponent(lblFchEntrega)
-										.addComponent(lblFchCarga).addComponent(lblPracticasAsociadas))
-										.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(
-										gl_contentPanel.createSequentialGroup().addComponent(lblResultados).addGap(77)))
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPanel.createSequentialGroup()
-												.addComponent(txtResultados, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addContainerGap(332, Short.MAX_VALUE))
-										.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_contentPanel.createSequentialGroup()
-														.addComponent(txtFchCarga, GroupLayout.PREFERRED_SIZE, 81,
-																GroupLayout.PREFERRED_SIZE)
-														.addContainerGap(337, Short.MAX_VALUE))
-												.addGroup(gl_contentPanel.createSequentialGroup()
-														.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-																.addGroup(gl_contentPanel
-																		.createParallelGroup(Alignment.LEADING)
-																		.addGroup(gl_contentPanel
-																				.createParallelGroup(Alignment.TRAILING)
-																				.addGroup(gl_contentPanel
-																						.createSequentialGroup()
-																						.addGroup(gl_contentPanel
-																								.createParallelGroup(
-																										Alignment.LEADING)
-																								.addComponent(
-																										txtPeticionID,
-																										0, 0,
-																										Short.MAX_VALUE)
-																								.addComponent(
-																										txtSucursalID,
-																										GroupLayout.PREFERRED_SIZE,
-																										GroupLayout.DEFAULT_SIZE,
-																										GroupLayout.PREFERRED_SIZE))
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED)
-																						.addGroup(gl_contentPanel
-																								.createParallelGroup(
-																										Alignment.LEADING)
-																								.addComponent(
-																										lblWarningMessagePeticionID)
-																								.addComponent(
-																										lblWarningMessagePacienteID))
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED,
-																								93,
-																								GroupLayout.PREFERRED_SIZE))
-																				.addGroup(gl_contentPanel
-																						.createSequentialGroup()
-																						.addComponent(comboBoxEstado,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED,
-																								250, Short.MAX_VALUE)
-																						.addGroup(gl_contentPanel
-																								.createParallelGroup(
-																										Alignment.LEADING)
-																								.addComponent(
-																										lblWarningMessageFechaCarga)
-																								.addComponent(
-																										lblWarningMessageFechaEntrega)))
-																				.addComponent(txtFchEntrega,
-																						Alignment.LEADING,
-																						GroupLayout.PREFERRED_SIZE, 81,
-																						GroupLayout.PREFERRED_SIZE))
-																		.addGroup(gl_contentPanel
-																				.createSequentialGroup()
-																				.addComponent(txtPacienteID,
-																						GroupLayout.PREFERRED_SIZE, 125,
-																						GroupLayout.PREFERRED_SIZE)
-																				.addPreferredGap(
-																						ComponentPlacement.RELATED, 197,
-																						GroupLayout.PREFERRED_SIZE)))
-																.addComponent(txtObraSocial, GroupLayout.PREFERRED_SIZE,
-																		248, GroupLayout.PREFERRED_SIZE))
-														.addGap(96)))
-										.addGroup(gl_contentPanel
-												.createSequentialGroup().addComponent(txtPracticasAsociadas,
-														GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-												.addContainerGap()))))));
-		gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup().addContainerGap()
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-										.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblWarningMessagePeticionID).addComponent(txtPeticionID,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-										.addGap(7))
-								.addGroup(gl_contentPanel.createSequentialGroup().addComponent(lblPeticionID)
-										.addPreferredGap(ComponentPlacement.UNRELATED)))
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-										.addComponent(lblWarningMessagePacienteID).addGap(28))
-								.addGroup(gl_contentPanel.createSequentialGroup()
-										.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(txtSucursalID, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblSucursalID))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(txtPacienteID, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblPacienteID))))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtObraSocial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblObraSocial))
-						.addGap(7)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblWarningMessageFechaCarga).addGroup(
-										gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblEstado)
-												.addComponent(comboBoxEstado, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtFchEntrega, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblFchEntrega))
-								.addComponent(lblWarningMessageFechaEntrega))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtFchCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblEstado)
+							.addContainerGap(515, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblObraSocial, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+								.addComponent(lblPacienteID)
+								.addComponent(lblSucursalID)
+								.addComponent(lblPeticionID)
+								.addComponent(lblFchEntrega)
 								.addComponent(lblFchCarga))
-						.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addComponent(txtFchCarga, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap(337, Short.MAX_VALUE))
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+											.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+												.addGroup(gl_contentPanel.createSequentialGroup()
+													.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+														.addComponent(txtPeticionID, 0, 0, Short.MAX_VALUE)
+														.addComponent(txtSucursalID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblWarningMessagePeticionID)
+														.addComponent(lblWarningMessagePacienteID))
+													.addPreferredGap(ComponentPlacement.RELATED, 93, GroupLayout.PREFERRED_SIZE))
+												.addGroup(gl_contentPanel.createSequentialGroup()
+													.addComponent(comboBoxEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+													.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblWarningMessageFechaCarga)
+														.addComponent(lblWarningMessageFechaEntrega)))
+												.addComponent(txtFchEntrega, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+											.addGroup(gl_contentPanel.createSequentialGroup()
+												.addComponent(txtPacienteID, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED, 197, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(txtObraSocial, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE))
+									.addGap(96))))))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblWarningMessagePeticionID)
+								.addComponent(txtPeticionID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(7))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblPeticionID)
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblWarningMessagePacienteID)
+							.addGap(28))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtSucursalID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSucursalID))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtPacienteID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblPacienteID))))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtObraSocial, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblObraSocial))
+					.addGap(7)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblWarningMessageFechaCarga)
 						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtPracticasAsociadas, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblPracticasAsociadas))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblResultados)
-								.addComponent(txtResultados, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(69)));
+							.addComponent(lblEstado)
+							.addComponent(comboBoxEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtFchEntrega, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblFchEntrega))
+						.addComponent(lblWarningMessageFechaEntrega))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtFchCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFchCarga))
+					.addGap(120))
+		);
 		lblWarningMessageFechaCarga.setForeground(Color.RED);
 		lblWarningMessageFechaEntrega.setForeground(Color.RED);
 		lblWarningMessagePacienteID.setForeground(Color.RED);
@@ -418,8 +348,6 @@ public class PeticionABM extends JDialog {
 		peticion.setFchCarga(txtFchCarga.getText());
 		peticion.setFchEntrega(txtFchEntrega.getText());
 		peticion.setEstado((EstadoEnumDTO) comboBoxEstado.getSelectedItem());
-		peticion.setPracticasAsociadas(txtPracticasAsociadas.getText());
-		peticion.setResultados(txtResultados.getText());
 	}
 
 	private void asignarDatosForm() {
@@ -430,8 +358,6 @@ public class PeticionABM extends JDialog {
 		txtFchCarga.setText(peticion.getFchCarga());
 		txtFchEntrega.setText(peticion.getFchEntrega());
 		comboBoxEstado.setSelectedItem(peticion.getEstado());
-		txtPracticasAsociadas.setText(peticion.getPracticasAsociadas());
-		txtResultados.setText(peticion.getResultados());
 	}
 
 	public void setPeticion(PeticionDTO peticion) {

@@ -2,6 +2,7 @@ package dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PeticionDTO {
 	private String peticionID;
@@ -11,13 +12,10 @@ public class PeticionDTO {
 	private String fchEntrega;
 	private String fchCarga;
 	private EstadoEnumDTO estado;
-	//Falta poner estos como lista asociado a las practicas y resultados creados
-	private String practicasAsociadas;
-	private String resultados;
 	
 	
 	public PeticionDTO(String peticionID, String sucursalID, String pacienteID, String obraSocial, String fchEntrega,
-			String fchCarga, EstadoEnumDTO estado, String practicasAsociadas, String resultados) {
+			String fchCarga, EstadoEnumDTO estado) {
 		super();
 		this.peticionID = peticionID;
 		this.sucursalID = sucursalID;
@@ -26,8 +24,6 @@ public class PeticionDTO {
 		this.fchEntrega = fchEntrega;
 		this.fchCarga = fchCarga;
 		this.estado = estado;
-		this.practicasAsociadas = practicasAsociadas;
-		this.resultados = resultados;
 	}
 	
 	public PeticionDTO() {
@@ -76,18 +72,5 @@ public class PeticionDTO {
 	public void setEstado(EstadoEnumDTO estado) {
 		this.estado = estado;
 	}
-	public String getPracticasAsociadas() {
-		return practicasAsociadas;
-	}
-	public void setPracticasAsociadas(String practicasAsociadas) {
-		this.practicasAsociadas = practicasAsociadas;
-	}
-	public String getResultados() {
-		return resultados;
-	}
-	public void setResultados(String resultados) {
-		this.resultados = resultados;
-	}
-
 	
 }

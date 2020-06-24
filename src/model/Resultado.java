@@ -1,27 +1,22 @@
 package model;
 
 import dto.EstadoEnumDTO;
-import dto.EstadoHabilitacionEnumDTO;
-import dto.PacienteDTO;
-import dto.PeticionDTO;
-import dto.PracticaDTO;
 import dto.ResultadoDTO;
-import dto.SexoEnumDTO;
 
 
 public class Resultado {
 	
 	private String resultadoID;
-	private String practicaID;
+	private String peticionID;
 	private String valor;
 	private String descripcion;
 	private EstadoEnumDTO estado;
 	
 
-	public Resultado(String resultadoID, String practicaID, String valor, String descripcion, EstadoEnumDTO estado)
+	public Resultado(String resultadoID, String peticionID, String valor, String descripcion, EstadoEnumDTO estado)
 	{	
 		this.resultadoID = resultadoID;
-		this.practicaID = practicaID;
+		this.peticionID = peticionID;
 		this.valor = valor;
 		this.descripcion = descripcion;
 		this.estado = estado;
@@ -30,7 +25,7 @@ public class Resultado {
 	public Resultado(ResultadoDTO resultadoDTO)
 	{
 		this.setResultadoID(resultadoDTO.getResultadoID());
-		this.setPracticaID(resultadoDTO.getPracticaID());
+		this.setPeticionID(resultadoDTO.getPeticionID());
 		this.setValor(resultadoDTO.getValor());
 		this.setDescripcion(resultadoDTO.getDescripcion());
 		this.setEstado(resultadoDTO.getEstado());
@@ -40,7 +35,7 @@ public class Resultado {
 		
 		ResultadoDTO resultado = new ResultadoDTO();
 		resultado.setResultadoID(this.getResultadoID());
-		resultado.setPracticaID(this.getPracticaID());
+		resultado.setPeticionID(this.getPeticionID());
 		resultado.setValor(this.getValor());
 		resultado.setDescripcion(this.getDescripcion());
 		resultado.setEstado(this.getEstado());
@@ -60,12 +55,12 @@ public class Resultado {
 		this.resultadoID = resultadoID;
 	}
 
-	public String getPracticaID() {
-		return practicaID;
+	public String getPeticionID() {
+		return peticionID;
 	}
 
-	public void setPracticaID(String practicaID) {
-		this.practicaID = practicaID;
+	public void setPeticionID(String peticionID) {
+		this.peticionID = peticionID;
 	}
 
 	public String getValor() {

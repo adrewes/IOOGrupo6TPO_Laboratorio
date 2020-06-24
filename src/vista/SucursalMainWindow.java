@@ -27,8 +27,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import collections.PacienteCollection;
-import collections.SucursalCollection;
 import controller.ParametrosController;
 import tablemodel.PacienteTableModel;
 import tablemodel.SucursalTableModel;
@@ -51,7 +49,6 @@ import javax.swing.ScrollPaneConstants;
 
 public class SucursalMainWindow {
 	
-	private ParametrosController parametrosController;
 	JFrame frame;
 	private JTable table;
 	private SucursalTableModel tableModel;
@@ -72,6 +69,7 @@ public class SucursalMainWindow {
 		});
 	}
 	*/
+	
 	/**
 	 * Create the application.
 	 */
@@ -114,7 +112,8 @@ public class SucursalMainWindow {
 			switch (opcion) {
 			case 0:
 				// SI
-				tableModel.eliminar(table.getSelectedRow());
+				String sucursalIDADerivar = JOptionPane.showInputDialog("Por favor ingrese el ID de Sucursal a la cual derivar las peticiones activas");
+				tableModel.eliminar(table.getSelectedRow(), sucursalIDADerivar);
 				break;
 			case 1:
 				// NO

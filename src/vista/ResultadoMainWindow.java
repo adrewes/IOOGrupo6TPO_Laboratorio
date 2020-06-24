@@ -27,7 +27,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import collections.ResultadoCollection;
 import controller.LaboratorioController;
 import tablemodel.ResultadoTableModel;
 

@@ -3,15 +3,15 @@ package dto;
 public class ResultadoDTO {
 	
 	private String resultadoID;
-	private String practicaID;
+	private String peticionID;
 	private String valor;
 	private String descripcion;
 	private EstadoEnumDTO estado;
 	
-	public ResultadoDTO(String resultadoID, String practicaID, String valor, String descripcion, EstadoEnumDTO estado) {
+	public ResultadoDTO(String resultadoID, String peticionID, String valor, String descripcion, EstadoEnumDTO estado) {
 		super();
 		this.resultadoID = resultadoID;
-		this.practicaID = practicaID;
+		this.peticionID = peticionID;
 		this.valor = valor;
 		this.descripcion = descripcion;
 		this.estado = estado;
@@ -27,11 +27,11 @@ public class ResultadoDTO {
 	public void setResultadoID(String resultadoID) {
 		this.resultadoID = resultadoID;
 	}
-	public String getPracticaID() {
-		return practicaID;
+	public String getPeticionID() {
+		return peticionID;
 	}
-	public void setPracticaID(String practicaID) {
-		this.practicaID = practicaID;
+	public void setPeticionID(String peticionID) {
+		this.peticionID = peticionID;
 	}
 	public String getValor() {
 		return valor;
